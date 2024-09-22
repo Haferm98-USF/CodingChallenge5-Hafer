@@ -81,3 +81,17 @@ function completeOrder (customerName)
     };
 };
 
+//Task 6: Create a Function to Check Pending Orders
+
+function checkPendingOrders () 
+{ 
+    orders.forEach
+    (
+    order => 
+    if (order.status === 'Pending') 
+        {
+            console.log('Pending order:');
+            console.log('Items: ' + order.items);
+        }
+    );
+};
