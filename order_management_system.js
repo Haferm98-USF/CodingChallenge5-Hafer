@@ -13,7 +13,41 @@ let inventory =
 let orders = [];
 orders.push
 ({
-customerName: 'Matt',
-items: [Latte, Muffin],
-status: 'Pending'
-})
+    customerName: 'Matt',
+    itemsOrdered: [Latte, Muffin],
+    status: 'Pending'
+});
+
+//Task 3: Create a Function to Place an Order
+
+function placeOrder (customerName, itemsOrdered)
+{
+ for (let item of itemsOrdered) 
+    {
+        const product = inventory.find(p => p.name === item.name);
+
+        if (!product) //Logic branch if item is not in inventory
+            {
+                console.log('This item does not exist in the inventory');
+                return;
+            }
+        if (product.quantity < item.quantity) // Logic branch if item stock is too low
+        {
+            console.log('Inssuficent quanitity. Availiable stock = ${product.quantity}');
+            return;
+        }
+    }
+}
+itemsOrdered.forEach(item =>  //Logic Branch if the order can be successfully fulfilled
+    {
+        const product = inventory.find(p => p.name === item.name);
+        product.quantity -= item.quantity;
+    });
+orders.push
+(
+    {
+        customerName: customerName,
+        items: itemsOrdered;
+        status: 'Pending'
+    }
+);
