@@ -51,3 +51,16 @@ orders.push
         status: 'Pending'
     }
 );
+
+//Task 4: Create a Function to Calculate Total for an Order
+
+function calculateOrderTotal (order)
+{
+    let total = 0;
+    order.items.forEach(item => 
+        {
+            let product = inventory.find(p => p.name === item.name);
+            total += product.price * product.quantity;
+        });
+    return total;
+};
